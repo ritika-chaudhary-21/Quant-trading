@@ -131,8 +131,3 @@ Machine learning models improved the robustness of the trading strategy,
 with XGBoost providing the strongest improvement in trade quality.
 The framework is modular and extendable to other assets and models.
 
----
-
-## Disclaimer
-This project is for educational and research purposes only.
-It does not constitute financial advice.
