@@ -1,0 +1,48 @@
+DATA CLEANING REPORT
+====================
+
+1. Data Sources
+---------------
+Intraday derivative data was sourced from the NSE Contract-wise Price Volume Archives.
+Month-wise CSV files for NIFTY Futures and NIFTY Options (Call and Put) were downloaded
+and consolidated.
+
+NSE does not provide official intraday OHLC data for index spot prices.
+Therefore, NIFTY Futures prices were used as a proxy for spot prices.
+This is a widely accepted practice in quantitative research and derivative-based
+trading systems where futures lead price discovery.
+
+2. Data Consolidation
+---------------------
+- Month-wise futures files were concatenated into a single intraday futures dataset.
+- Month-wise options files were concatenated and separated into Call (CE) and Put (PE).
+- All timestamps were standardized and converted to datetime format.
+
+3. Missing Value Handling
+-------------------------
+- Rows with missing critical fields such as Close price, Open Interest, or Strike
+  were removed.
+- Non-numeric values in price and volume columns were coerced to NaN and handled
+  appropriately.
+
+4. Futures Contract Rollover Handling
+-------------------------------------
+- Futures rollover was handled by tracking expiry dates.
+- For each timestamp, the front-month (nearest expiry) contract was selected.
+- This ensured continuity in futures prices and open interest across expiry dates.
+
+5. ATM Strike Calculation
+-------------------------
+- ATM (At-The-Money) strike was dynamically calculated at each timestamp.
+- The nearest strike to the futures close price was selected as ATM.
+- Options data was filtered to include ATM, ATM ± 1, and ATM ± 2 strikes.
+
+6. Timestamp Alignment
+----------------------
+- Futures and options datasets were aligned on 5-minute timestamps.
+- Only common timestamps across datasets were retained to ensure consistency.
+
+7. Final Output
+---------------
+The cleaned and merged intraday dataset was saved as:
+data/cleaned/nifty_merged_intraday.csv

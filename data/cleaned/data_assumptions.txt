@@ -1,0 +1,28 @@
+DATA ASSUMPTIONS
+================
+
+1. Spot Price Proxy
+-------------------
+NSE does not publish official intraday OHLC data for index spot prices.
+To overcome this limitation, NIFTY Futures prices were used as a proxy for
+spot prices.
+
+This approach is widely used in:
+- Intraday derivatives research
+- Options pricing models
+- Market microstructure studies
+
+2. Risk-Free Rate
+-----------------
+A constant annualized risk-free rate of 6.5% was assumed for options Greeks
+calculations, in line with prevailing Indian government bond yields.
+
+3. Liquidity Assumption
+-----------------------
+It is assumed that ATM and near-ATM option strikes (ATM ± 2) are sufficiently
+liquid for intraday analysis.
+
+4. Transaction Costs
+--------------------
+Transaction costs and slippage were not included unless explicitly stated
+in the strategy backtesting section.
